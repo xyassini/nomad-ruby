@@ -48,6 +48,12 @@ module Nomad
         ENV["NOMAD_TLS_SERVER_NAME"]
       end
 
+      # The nomad ACL token used for authentication
+      # @return [String, nil]
+      def acl_token
+        ENV["NOMAD_ACL_TOKEN"] || ENV["NOMAD_TOKEN"]
+      end
+
       # The number of seconds to wait when trying to open a connection before
       # timing out
       # @return [String, nil]

@@ -6,6 +6,7 @@ module Nomad
       @keys ||= [
         :address,
         :hostname,
+        :acl_token,
         :open_timeout,
         :proxy_address,
         :proxy_password,

@@ -141,6 +141,8 @@ module Nomad
         req.add_field(key, value)
       end
 
+      req.add_field("X-Nomad-Token", @acl_token) unless @acl_token.nil?
+
       # Setup PATCH/POST/PUT
       if [:patch, :post, :put].include?(verb)
         if data.respond_to?(:read)
