@@ -141,7 +141,12 @@ module Nomad
         req.add_field(key, value)
       end
 
+      # Add ACL token header if applicable
       req.add_field("X-Nomad-Token", @acl_token) unless @acl_token.nil?
+
+      # Add HttpBasicAuth if applicable
+      addr = URI.parse(address)
+      req.basic_auth(addr.user, addr.password) if addr.user && addr.password
 
       # Setup PATCH/POST/PUT
       if [:patch, :post, :put].include?(verb)
